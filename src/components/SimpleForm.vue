@@ -2,12 +2,14 @@
 import CustomInput from "@components/CustomInput.vue";
 import CustomCheckbox from "@components/CustomCheckbox.vue";
 import CustomRadio from "@components/CustomRadio.vue";
+import CustomPopup from "@components/CustomPopup.vue";
 
 export default {
   components: {
     CustomRadio,
     CustomInput,
     CustomCheckbox,
+    CustomPopup
   },
   props: ['title'],
   data(){
@@ -26,6 +28,7 @@ export default {
       },
       checkbox: false,
       radioSelection: 'option-1',
+      isPopupVisible: true,
     };
   },
   computed: {
@@ -37,7 +40,7 @@ export default {
     submitHandler() {
       if (!this.isFormValid) return;
 
-      alert('Form Submitted');
+      this.isPopupVisible = true;
     },
     validateName(value) {
       if (value.length < 4 || value.length >= 12){
@@ -74,6 +77,16 @@ export default {
     <custom-radio v-model="radioSelection" :options="[ {id: 'option-1', value: 'option-1', label: 'first', name: 'value'}, {id: 'option-2', value: 'option-2', label: 'second'} ]"></custom-radio>
     <custom-button :disabled="!isFormValid" class="custom-form__button">Отправить</custom-button>
   </form>
+  <custom-popup v-model:is-visible="isPopupVisible">
+    <template v-slot="closePopup">
+      <custom-heading level="4">Name: {{ nameInput.value }}</custom-heading>
+      <custom-heading level="4">Password: {{ passwordInput.value }}</custom-heading>
+      <custom-heading level="4">Number: {{ numberInput.value }}</custom-heading>
+      <custom-heading level="4">Checkbox: {{ checkbox ? 'on' : 'off' }}</custom-heading>
+      <custom-heading level="4">Selected Radio: {{ radioSelection }}</custom-heading>
+      <custom-button @click="closePopup">Close</custom-button>
+    </template>
+  </custom-popup>
 </template>
 
 <style scoped lang="scss">
