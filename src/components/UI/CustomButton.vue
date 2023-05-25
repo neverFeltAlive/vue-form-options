@@ -3,7 +3,7 @@
 </template>
 
 <style lang="scss" scoped>
-@import "@utils/vars.scss";
+@import '@utils/vars.scss';
 
 .custom-button {
   width: fit-content;
