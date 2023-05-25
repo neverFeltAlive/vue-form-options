@@ -2,17 +2,19 @@
   <div class="custom-input">
     <label :for="name">{{ label }}:</label>
     <input
-        class="custom-input__input"
-        :id="name"
-        :class="{ error: !!errorMessage }"
-        :name="name"
-        :type="type"
-        :value="modelValue"
-        :placeholder="placeholder"
-        @input="$emit('update:modelValue', $event.target.value)"
-        @blur="onBlur"
-    >
-    <div class="custom-input__error" v-fade="!isValid && errorMessage">{{ errorMessage }}</div>
+      class="custom-input__input"
+      :id="name"
+      :class="{ error: !!errorMessage }"
+      :name="name"
+      :type="type"
+      :value="modelValue"
+      :placeholder="placeholder"
+      @input="$emit('update:modelValue', $event.target.value)"
+      @blur="onBlur"
+    />
+    <div class="custom-input__error" v-fade="!isValid && errorMessage">
+      {{ errorMessage }}
+    </div>
   </div>
 </template>
 
@@ -33,39 +35,39 @@ export default {
     },
     label: {
       type: String,
-      required: true
+      required: true,
     },
     isValid: {
       type: Boolean,
       required: true,
     },
     validate: {
-      required: true
+      required: true,
     },
     placeholder: {
       default: '...',
     },
   },
   emits: ['update:modelValue', 'update:isValid'],
-  data(){
+  data() {
     return {
-      errorMessage: null
+      errorMessage: null,
     };
   },
   methods: {
-    onBlur(event){
+    onBlur(event) {
       const value = event.target.value;
       const error = this.validate(value);
 
       this.errorMessage = value.length === 0 ? '' : error;
       this.$emit('update:isValid', !error);
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-@import "@utils/vars.scss";
+@import '@utils/vars.scss';
 
 .custom-input {
   display: flex;

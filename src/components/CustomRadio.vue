@@ -1,8 +1,22 @@
 <template>
   <div class="custom-radio">
-    <div class="custom-radio__option" v-for="option in options" :key="option.id" @click.prevent="handleClick($event, option.value)">
-      <input class="custom-radio__input" type="radio" :id="option.id" :name="option.name" :value="option.value" :checked="idRadioChecked(option.id)">
-      <label class="custom-radio__label" :for="option.id">{{ option.label }}</label>
+    <div
+      class="custom-radio__option"
+      v-for="option in options"
+      :key="option.id"
+    >
+      <input
+        class="custom-radio__input"
+        type="radio"
+        :id="option.id"
+        :name="option.name"
+        :value="option.value"
+        :checked="isRadioChecked(option.id)"
+        @change="$emit('update:modelValue', $event.target.value)"
+      />
+      <label class="custom-radio__label" :for="option.id">
+        {{ option.label }}
+      </label>
     </div>
   </div>
 </template>
@@ -13,30 +27,29 @@ export default {
   props: {
     modelValue: {
       type: String,
-      required: true
+      required: true,
     },
     options: {
       type: Array,
-      required: true
+      required: true,
     },
     required: {
       type: Boolean,
       default: false,
-    }
+    },
   },
   methods: {
-    handleClick(event, value) {
-      this.$emit('update:modelValue', (!this.required && value === this.modelValue) ? '' : value);
+    isRadioChecked(id) {
+      return this.options.find(
+        (option) => option.id === id && option.value === this.modelValue
+      );
     },
-    idRadioChecked(id) {
-      return this.options.find((option) => option.id === id && option.value === this.modelValue);
-    }
-  }
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-@import "@utils/vars.scss";
+@import '@utils/vars.scss';
 
 .custom-radio {
   display: flex;

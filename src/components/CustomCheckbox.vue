@@ -1,10 +1,26 @@
 <template>
   <div class="custom-checkbox">
     <div class="custom-checkbox__inner">
-      <input ref="input" type="checkbox" class="custom-checkbox__input" :id="name" :name="name" :checked="modelValue" @change="$emit('update:modelValue', $event.target.checked)" :required="required">
+      <input
+        ref="input"
+        type="checkbox"
+        class="custom-checkbox__input"
+        :id="name"
+        :name="name"
+        :checked="modelValue"
+        @change="$emit('update:modelValue', $event.target.checked)"
+        :required="required"
+      />
       <label class="custom-checkbox__checkbox" :for="name">{{ label }}</label>
     </div>
-    <div class="custom-checkbox__error" :class="{checked: modelValue}" v-if="required" v-fade="!modelValue">This checkbox is required</div>
+    <div
+      class="custom-checkbox__error"
+      :class="{ checked: modelValue }"
+      v-if="required"
+      v-fade="!modelValue"
+    >
+      This checkbox is required
+    </div>
   </div>
 </template>
 
@@ -14,7 +30,7 @@ export default {
   props: {
     name: {
       type: String,
-      required: true
+      required: true,
     },
     modelValue: {
       type: Boolean,
@@ -22,18 +38,18 @@ export default {
     },
     label: {
       type: String,
-      required: true
+      required: true,
     },
     required: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
-@import "@utils/vars.scss";
+@import '@utils/vars.scss';
 
 .custom-checkbox {
   margin-bottom: 20px;
