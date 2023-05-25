@@ -16,7 +16,6 @@ export default {
 
 <style lang="scss" scoped>
 .container {
-  display: flex;
   max-width: 1024px;
   margin: 0 auto;
   background: white;
