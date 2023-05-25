@@ -2,7 +2,7 @@
   <div class="custom-checkbox">
     <div class="custom-checkbox__inner">
       <input ref="input" type="checkbox" class="custom-checkbox__input" :id="name" :name="name" :checked="modelValue" @change="$emit('update:modelValue', $event.target.checked)" :required="required">
-      <label class="custom-checkbox__checkbox" :for="name" @click="handleClick">{{ label }}</label>
+      <label class="custom-checkbox__checkbox" :for="name">{{ label }}</label>
     </div>
     <div class="custom-checkbox__error" :class="{checked: modelValue}" v-if="required" v-fade="!modelValue">This checkbox is required</div>
   </div>
@@ -29,11 +29,6 @@ export default {
       default: false
     }
   },
-  methods: {
-    handleClick() {
-      this.$refs.input.click();
-    }
-  }
 };
 </script>
 
