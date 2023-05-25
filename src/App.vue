@@ -1,5 +1,26 @@
-<script setup></script>
+<script>
+import SimpleForm from '@components/SimpleForm.vue';
 
-<template></template>
+export default {
+  components: {
+    SimpleForm,
+  },
+};
+</script>
 
-<style scoped></style>
+<template>
+  <div class="container">
+    <simple-form title="Simple Form"></simple-form>
+  </div>
+</template>
+
+<style lang="scss" scoped>
+.container {
+  display: flex;
+  max-width: 1024px;
+  margin: 0 auto;
+  background: white;
+  min-height: 100vh;
+  padding: 100px 50px;
+}
+</style>
