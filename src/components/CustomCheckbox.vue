@@ -41,6 +41,7 @@ export default {
 @import "@utils/vars.scss";
 
 .custom-checkbox {
+  margin-bottom: 20px;
 
   &__inner {
     display: flex;
