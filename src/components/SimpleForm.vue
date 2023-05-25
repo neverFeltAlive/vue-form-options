@@ -1,9 +1,11 @@
 <script>
 import CustomInput from "@components/CustomInput.vue";
 import CustomCheckbox from "@components/CustomCheckbox.vue";
+import CustomRadio from "@components/CustomRadio.vue";
 
 export default {
   components: {
+    CustomRadio,
     CustomInput,
     CustomCheckbox,
   },
@@ -23,6 +25,7 @@ export default {
         isValid: false,
       },
       checkbox: false,
+      radioSelection: 'option-1',
     };
   },
   computed: {
@@ -68,6 +71,7 @@ export default {
     <custom-input type="password" v-model="passwordInput.value" v-model:is-valid="passwordInput.isValid" label="Password" name="pwd" :validate="validatePassword" placeholder="Введите парль..."/>
     <custom-input type="number" v-model="numberInput.value" v-model:is-valid="numberInput.isValid" label="Number" name="number" :validate="validateNumber"/>
     <custom-checkbox class="custom-form__checkbox" v-model="checkbox" label="Checkbox" name="checkbox" required/>
+    <custom-radio v-model="radioSelection" :options="[ {id: 'option-1', value: 'option-1', label: 'first', name: 'value'}, {id: 'option-2', value: 'option-2', label: 'second'} ]"></custom-radio>
     <custom-button :disabled="!isFormValid" class="custom-form__button">Отправить</custom-button>
   </form>
 </template>
