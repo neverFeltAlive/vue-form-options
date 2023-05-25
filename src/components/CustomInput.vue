@@ -3,11 +3,13 @@
     <label :for="name">{{ label }}:</label>
     <input
         class="custom-input__input"
+        :id="name"
         :class="{ error: !!errorMessage }"
         :name="name"
         :type="type"
-        :value="modelValue" @input="$emit('update:modelValue', $event.target.value)"
+        :value="modelValue"
         :placeholder="placeholder"
+        @input="$emit('update:modelValue', $event.target.value)"
         @blur="onBlur"
     >
     <div class="custom-input__error" v-fade="!isValid && errorMessage">{{ errorMessage }}</div>
