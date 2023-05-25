@@ -1,9 +1,11 @@
 <script>
 import CustomInput from "@components/CustomInput.vue";
+import CustomCheckbox from "@components/CustomCheckbox.vue";
 
 export default {
   components: {
     CustomInput,
+    CustomCheckbox,
   },
   props: ['title'],
   data(){
@@ -20,11 +22,12 @@ export default {
         value: '',
         isValid: false,
       },
+      checkbox: false,
     };
   },
   computed: {
     isFormValid() {
-      return this.nameInput.isValid && this.passwordInput.isValid && this.numberInput.isValid;
+      return this.nameInput.isValid && this.passwordInput.isValid && this.numberInput.isValid && this.checkbox;
     }
   },
   methods: {
@@ -64,6 +67,7 @@ export default {
     <custom-input type="text" v-model="nameInput.value" v-model:is-valid="nameInput.isValid" label="Name" name="name" :validate="validateName" placeholder="Введите имя..."/>
     <custom-input type="password" v-model="passwordInput.value" v-model:is-valid="passwordInput.isValid" label="Password" name="pwd" :validate="validatePassword" placeholder="Введите парль..."/>
     <custom-input type="number" v-model="numberInput.value" v-model:is-valid="numberInput.isValid" label="Number" name="number" :validate="validateNumber"/>
+    <custom-checkbox class="custom-form__checkbox" v-model="checkbox" label="Checkbox" name="checkbox" required/>
     <custom-button :disabled="!isFormValid" class="custom-form__button">Отправить</custom-button>
   </form>
 </template>
@@ -75,6 +79,10 @@ export default {
 
   &__button {
     align-self: flex-end;
+  }
+
+  &__checkbox {
+    align-self: flex-start;
   }
 }
 </style>
